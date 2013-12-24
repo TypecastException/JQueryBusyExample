@@ -24,11 +24,14 @@
         </div>
     </div>
     
-    // Don't put the button definition in here!
+    // Don't put the button in here . . . 
+
 }
 
-@*Put it out here instead!*@
 <input type="submit" name="operation" id="process" value="process" />
+
+
+@*Put it out here instead!*@
 
 <div id="divProcessing">
     <p>Processing, please wait . . . <img src="../../Content/ajax-loader.gif"></p>
@@ -44,38 +47,36 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $(document).ready(function () {
 
-                // Hide the "busy" Gif at load:
-                $("#divProcessing").hide();
+            // Hide the "busy" Gif at load:
+            $("#divProcessing").hide();
 
-                // Attach click handler to the submit button:
-                $('#process').click(function () {
-                    $('#myform').submit();
-                });
+            // Attach click handler to the submit button:
+            $('#process').click(function () {
+                $('#myform').submit();
+            });
 
-                $("#myform").on("submit", function (event) {
-                    event.preventDefault();
+            $("#myform").on("submit", function (event) {
+                event.preventDefault();
 
-                    // Show the "busy" Gif:
-                    $("#divProcessing").show();
-                    var url = $(this).attr("action");
-                    var formData = $(this).serialize();
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        data: formData,
-                        dataType: "json",
-                        success: function (resp) {
+                // Show the "busy" Gif:
+                $("#divProcessing").show();
+                var url = $(this).attr("action");
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: formData,
+                    dataType: "json",
+                    success: function (resp) {
 
-                            // Hide the "busy" gif:
-                            $("#divProcessing").hide();
+                        // Hide the "busy" gif:
+                        $("#divProcessing").hide();
 
-                            // Do something useful with the data:
-                            $("<h3>" + resp.FirstName + " " + resp.LastName + "</h3>").appendTo("#divResult");
-                        }
-                    })
-                });
+                        // Do something useful with the data:
+                        $("<h3>" + resp.FirstName + " " + resp.LastName + "</h3>").appendTo("#divResult");
+                    }
+                })
             });
         });
     </script>
