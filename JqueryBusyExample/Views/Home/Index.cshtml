@@ -24,11 +24,10 @@
         </div>
     </div>
     
-    // Don't put the button in here . . . 
+    <input type="submit" name="operation" id="process" value="process" />
 
 }
 
-<input type="submit" name="operation" id="process" value="process" />
 
 
 @*Put it out here instead!*@
@@ -50,11 +49,6 @@
 
             // Hide the "busy" Gif at load:
             $("#divProcessing").hide();
-
-            // Attach click handler to the submit button:
-            $('#process').click(function () {
-                $('#myform').submit();
-            });
 
             $("#myform").on("submit", function (event) {
                 event.preventDefault();
